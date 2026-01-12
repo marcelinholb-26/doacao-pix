@@ -7,91 +7,85 @@
 
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       background: #f6f7f9;
       margin: 0;
       padding: 0;
     }
     .container {
       max-width: 420px;
-      margin: 0 auto;
+      margin: auto;
+      background: #fff;
       padding: 24px;
-      background: #ffffff;
       min-height: 100vh;
-      box-sizing: border-box;
       text-align: center;
     }
-    h1 {
-      font-size: 22px;
-      color: #333;
-      margin-bottom: 12px;
-    }
-    p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 16px;
-      line-height: 1.4;
-    }
-    .pix-button {
-      display: block;
-      background: #00bfa5;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 18px;
+    button {
+      width: 100%;
       padding: 14px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-    .pix-button:hover {
-      background: #00a693;
-    }
-    .qr {
-      margin-top: 20px;
-    }
-    .qr img {
-      width: 220px;
-      height: 220px;
-    }
-    .small {
-      font-size: 12px;
-      color: #777;
+      font-size: 16px;
       margin-top: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn-open {
+      background: #00bfa5;
+      color: #fff;
+    }
+    .btn-copy {
+      background: #1976d2;
+      color: #fff;
+    }
+    textarea {
+      width: 100%;
+      margin-top: 12px;
+      height: 80px;
+      font-size: 12px;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+<div class="container">
 
-    <h1>Doar via Pix</h1>
+  <h2>Doar via Pix</h2>
+  <p>Escolha o valor da doação no app do seu banco.</p>
 
-    <p>
-      Ao tocar no botão abaixo, você será direcionado ao app do seu banco
-      para <strong>digitar o valor da doação</strong> e confirmar o Pix.
-    </p>
+  <!-- TENTATIVA DE ABRIR O BANCO -->
+  <button class="btn-open" onclick="abrirPix()">
+    Abrir Pix no banco
+  </button>
 
-    <!-- 🔴 BOTÃO PIX -->
-    <!-- SUBSTITUA O CÓDIGO PIX ABAIXO PELO SEU "PIX COPIA E COLA" SEM VALOR -->
-    <a class="pix-button"
-       href="pix:00020126360014BR.GOV.BCB.PIX0114609098430120625204000053039865802BR5925PAROQUIA JESUS MISERICORD6009SAO PAULO62250521XeqXUtoaW999R6KZl09iJ6304C02C">
-       💚 Abrir Pix e escolher valor
-    </a>
+  <!-- COPIAR CÓDIGO (GARANTIDO) -->
+  <button class="btn-copy" onclick="copiarPix()">
+    Copiar código Pix
+  </button>
 
-    <p class="small">
-      Caso o Pix não abra automaticamente, utilize o QR Code abaixo.
-    </p>
+  <textarea id="pixCode" readonly>
+COLE_AQUI_SEU_PIX_COPIA_E_COLA_SEM_VALOR
+  </textarea>
 
-    <!-- 🟢 QR CODE (IMAGEM) -->
-    <!-- SUBSTITUA O ARQUIVO qrcode-pix.png PELO SEU QR CODE REAL -->
-    <div class="qr">
-      <img src="APP - CARDS divulgação (1).png" alt="https://github.com/marcelinholb-26/doacao-pix/blob/main/APP%20-%20CARDS%20divulga%C3%A7%C3%A3o%20(1).png">
-    </div>
+  <p style="font-size:12px;color:#666">
+    Se o banco não abrir automaticamente, copie o código,
+    abra o app do seu banco e cole em “Pix Copia e Cola”.
+  </p>
 
-    <p class="small">
-      Escaneie com o aplicativo do seu banco.
-    </p>
+</div>
 
-  </div>
+<script>
+  function abrirPix() {
+    window.location.href = "pix:00020126360014BR.GOV.BCB.PIX0114609098430120625204000053039865802BR5925PAROQUIA JESUS MISERICORD6009SAO PAULO62250521XeqXUtoaW999R6KZl09iJ6304C02C";
+  }
+
+  function copiarPix() {
+    const text = document.getElementById("pixCode");
+    text.select();
+    text.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Código Pix copiado. Abra o app do seu banco e cole.");
+  }
+</script>
+
 </body>
 </html>
-
